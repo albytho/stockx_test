@@ -141,12 +141,17 @@ class ImageGrid extends Component {
 
 	}
 
+	handleModal(id){
+		alert(id);
+	}
+
   render() {
   	//Uses the rows_of_images to dynamically create the row and column elemnts of the grid
 		let rows = this.state.rows_of_images.map(row_of_image =>{
 			let row = row_of_image.map(image =>{
 				let file_name = '/Images/'+image.file_path;
-				return <div className="col"> <Card image_name={file_name}/> </div>
+				let id = image.id;
+				return <div className="col"> <Card id={id} image_name={file_name} showModal={this.handleModal.bind(this)}/> </div>
 			});
 
 			return <div className="row"> {row} </div>
