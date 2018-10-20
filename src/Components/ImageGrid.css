@@ -1,0 +1,8 @@
+.container{
+    float: none;
+    margin: 0 auto;
+}
+
+.col{
+  padding-bottom: 30px;
+}
