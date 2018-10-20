@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Card from './Card.js'
 import uuid from 'uuid';
+import Popup from "reactjs-popup";
 import './ImageGrid.css';
 
 class ImageGrid extends Component {
@@ -112,7 +113,9 @@ class ImageGrid extends Component {
         	file_path: '25.jpg',
     		}
     	],
-      rows_of_images:[]
+      rows_of_images:[],
+      showPopUp:false,
+      currentID:0
     }
   }
 
@@ -142,12 +145,31 @@ class ImageGrid extends Component {
 	}
 
 	handleModal(id){
-		alert(id);
+		this.setState({showPopUp:true});
+		this.setState({currentID:id});
 	}
+
+	handleClose(){
+		this.setState({showPopUp: false});
+		this.setState({currentID:0});
+	}
+
+	handleAdd(id){
+		console.log(id)
+	}
+
+	handleEdit(id){
+
+	}
+
+	handleRemove(id){
+
+	}
+
 
   render() {
   	//Uses the rows_of_images to dynamically create the row and column elemnts of the grid
-		let rows = this.state.rows_of_images.map(row_of_image =>{
+		let image_grid = this.state.rows_of_images.map(row_of_image =>{
 			let row = row_of_image.map(image =>{
 				let file_name = '/Images/'+image.file_path;
 				let id = image.id;
@@ -159,9 +181,34 @@ class ImageGrid extends Component {
 
     return (
       <div>
+
         <div className="container">
-        	{rows}
+        	<div className="row">
+        		<div className="col-sm">
+        			<input type="text" className="form-control" id="brandInput" placeholder="Brand"/>
+        		</div>
+        		<div className="col-sm">
+        			<input type="text" className="form-control" id="styleInput" placeholder="Style"/>
+        		</div>
+        		<div className="col-sm">
+        			<input type="text" className="form-control" id="sizeInput" placeholder="Size"/>
+        		</div>
+        		<div className="col-sm">
+        			<input type="text" className="form-control" id="upcidInput" placeholder="UPC ID"/>
+        		</div>
+        	</div>
+
+        	{image_grid}
         </div>
+
+        <Popup open={this.state.showPopUp} onClose={this.handleClose.bind(this)} modal>
+        	<div className="content">
+        		<button type="button" className="btn btn-primary" onClick={this.handleAdd.bind(this,this.state.currentID)}>Add</button>
+						<button type="button" className="btn btn-warning" onClick={this.handleEdit.bind(this,this.state.currentID)}>Edit</button>
+						<button type="button" className="btn btn-danger" onClick={this.handleRemove.bind(this,this.state.currentID)}>Remove</button>
+        	</div>
+			  </Popup>
+
       </div>
     );
   }

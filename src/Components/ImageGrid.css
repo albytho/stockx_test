@@ -6,3 +6,29 @@
 .col{
   padding-bottom: 30px;
 }
+
+.col-sm{
+  padding-bottom: 30px;
+}
+
+.Popup{
+	width: 100px;
+}
+
+.modal {
+  font-size: 12px;
+}
+
+.content{
+	text-align: center;
+}
+
+input{
+	text-align: center;
+	width: 20px;
+}
+
+.center_div{
+    margin: 0 auto;
+    width:80% /* value of your choice which suits your alignment */
+}
