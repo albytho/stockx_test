@@ -202,6 +202,7 @@ class ImageGrid extends Component {
         </div>
 
         <Popup open={this.state.showPopUp} onClose={this.handleClose.bind(this)} modal>
+        Item: {this.state.currentID}
         	<div className="content">
         		<button type="button" className="btn btn-primary" onClick={this.handleAdd.bind(this,this.state.currentID)}>Add</button>
 						<button type="button" className="btn btn-warning" onClick={this.handleEdit.bind(this,this.state.currentID)}>Edit</button>
